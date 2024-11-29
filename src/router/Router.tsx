@@ -1,8 +1,8 @@
-import { Routes, Route } from "react-router"
-import { Landing } from "../pages/landing/Landing"
+import { Routes, Route } from 'react-router'
+import { LandingPage } from '@/pages/home/LandingPage'
 
 export const Router = () => (
   <Routes>
-    <Route path="/" element={<Landing />} />
+    <Route path="/" element={<LandingPage />} />
   </Routes>
 )
