@@ -33,45 +33,6 @@ export const LandingPage = () => {
   const [selectedPlan, setSelectedPlan] = useState(0)
   const navigate = useNavigate()
 
-  const testimonials = [
-    {
-      quote:
-        'El chatbot de WhatsApp de Flex Co ha revolucionado nuestra forma de interactuar con los clientes. La función de sincronización del calendario ha facilitado la programación.',
-      author: 'Sarah Johnson',
-      position: 'CEO de TechSolutions',
-      stat: '65% de reducción en conflictos de programación',
-      source: 'Encuesta de Clientes Flex Co',
-      logo: 'WomenWhoCode_logo.svg',
-      logoAlt: 'Women Who Code',
-      logoWidth: 120,
-      logoHeight: 40,
-    },
-    {
-      quote:
-        'El calendario personalizado nos ha dado un control sin precedentes sobre nuestras operaciones. Es como tener una vista panorámica de todo nuestro negocio.',
-      author: 'Michael Chen',
-      position: 'Gerente de Operaciones en GlobalTech',
-      stat: '30% de aumento en eficiencia operativa',
-      source: 'Informe de Impacto Flex Co 2023',
-      logo: 'thoughtworks.svg',
-      logoAlt: 'Thoughtworks',
-      logoWidth: 120,
-      logoHeight: 20,
-    },
-    {
-      quote:
-        'La integración perfecta entre el chatbot de WhatsApp y nuestro calendario empresarial ha optimizado todo nuestro proceso de reservas. Es simplemente brillante.',
-      author: 'David Thompson',
-      position: 'Fundador de AgileBookings',
-      stat: '40% de aumento en reservas exitosas',
-      source: 'Estudio de Crecimiento Empresarial Flex Co',
-      logo: 'ptc-logo.svg',
-      logoAlt: 'PTC',
-      logoWidth: 60,
-      logoHeight: 30,
-    },
-  ]
-
   const nextTestimonial = () => {
     setCurrentTestimonial((prev) => (prev + 1) % testimonials.length)
   }
@@ -534,3 +495,42 @@ export const LandingPage = () => {
     </div>
   )
 }
+
+const testimonials = [
+  {
+    quote:
+      'El chatbot de WhatsApp de Flex Co ha revolucionado nuestra forma de interactuar con los clientes. La función de sincronización del calendario ha facilitado la programación.',
+    author: 'Sarah Johnson',
+    position: 'CEO de TechSolutions',
+    stat: '65% de reducción en conflictos de programación',
+    source: 'Encuesta de Clientes Flex Co',
+    logo: 'WomenWhoCode_logo.svg',
+    logoAlt: 'Women Who Code',
+    logoWidth: 120,
+    logoHeight: 40,
+  },
+  {
+    quote:
+      'El calendario personalizado nos ha dado un control sin precedentes sobre nuestras operaciones. Es como tener una vista panorámica de todo nuestro negocio.',
+    author: 'Michael Chen',
+    position: 'Gerente de Operaciones en GlobalTech',
+    stat: '30% de aumento en eficiencia operativa',
+    source: 'Informe de Impacto Flex Co 2023',
+    logo: 'thoughtworks.svg',
+    logoAlt: 'Thoughtworks',
+    logoWidth: 120,
+    logoHeight: 20,
+  },
+  {
+    quote:
+      'La integración perfecta entre el chatbot de WhatsApp y nuestro calendario empresarial ha optimizado todo nuestro proceso de reservas. Es simplemente brillante.',
+    author: 'David Thompson',
+    position: 'Fundador de AgileBookings',
+    stat: '40% de aumento en reservas exitosas',
+    source: 'Estudio de Crecimiento Empresarial Flex Co',
+    logo: 'ptc-logo.svg',
+    logoAlt: 'PTC',
+    logoWidth: 60,
+    logoHeight: 30,
+  },
+]
