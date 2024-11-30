@@ -1,11 +1,10 @@
 import { useMemo, useCallback } from 'react'
 import { Clock, Plus, Search, CalendarHeart } from 'lucide-react'
-import { Button } from '@/components/ui/button/button'
-import { Input } from '@/components/ui/Input'
 import { format } from 'date-fns'
 import { Dispatch, SetStateAction } from 'react'
 import { es } from 'date-fns/locale'
-import { useSidebar } from './ui/sidebar/SidebarContext'
+import { Button, Input } from '@/components/ui'
+import { useSidebar } from './sidebar/SidebarContext'
 
 type Props = {
   setIsAddEventDialogOpen: Dispatch<SetStateAction<boolean>>

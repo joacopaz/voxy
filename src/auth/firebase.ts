@@ -1,15 +1,16 @@
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   GoogleAuthProvider,
-  signInWithRedirect,
-  signOut,
-  getRedirectResult,
   onAuthStateChanged,
-  createUserWithEmailAndPassword as GCreateUserWithEmailAndPassword,
-  signInWithEmailAndPassword as GSignInWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  // signInWithRedirect, not working
+  signOut,
   type User,
 } from 'firebase/auth'
 import { initializeApp } from 'firebase/app'
+import type { IAuthContext } from '@/components/auth/AuthContext'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -18,33 +19,66 @@ const firebaseConfig = {
   storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 }
 
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 
-export const registerAuthListener = (
-  onResolved: (user: User | null) => void
-) => {
-  const unsub = onAuthStateChanged(auth, (currentUser) => {
-    onResolved(currentUser)
-  })
-  return unsub
-}
-
 export const signInWithGoogle = async () => {
   const provider = new GoogleAuthProvider()
-  provider.addScope('email')
-  await signInWithRedirect(auth, provider)
-  return await getRedirectResult(auth)
+  // signInWithRedirect(auth, provider)
+  signInWithPopup(auth, provider)
 }
 
-export const handleSignOut = () => signOut(auth)
+export const signUp: IAuthContext['signUp'] = async (
+  email,
+  password,
+  provider
+) => {
+  try {
+    switch (provider) {
+      case 'emailAndPassword':
+        await createUserWithEmailAndPassword(auth, email, password)
+        break
+      case 'google':
+        await signInWithGoogle()
+        break
+    }
+  } catch (error) {
+    console.error({ error })
+    throw new Error((error as Error).message)
+  }
+}
 
-export const createUserWithEmailAndPassword = (
-  email: string,
-  password: string
-) => GCreateUserWithEmailAndPassword(auth, email, password)
+export const login: IAuthContext['login'] = async (
+  email,
+  password,
+  provider
+) => {
+  try {
+    switch (provider) {
+      case 'emailAndPassword':
+        await signInWithEmailAndPassword(auth, email, password)
+        break
+      case 'google':
+        await signInWithGoogle()
+        break
+    }
+  } catch (error) {
+    console.error({ error })
+    throw new Error((error as Error).message)
+  }
+}
 
-export const signInWithEmailAndPassword = (email: string, password: string) =>
-  GSignInWithEmailAndPassword(auth, email, password)
+export const logout: IAuthContext['logout'] = async () => {
+  await signOut(auth)
+}
+
+export const onAuthStateChangedListener = (cb: (user: User | null) => void) => {
+  const unsub = onAuthStateChanged(auth, (user) => {
+    cb(user)
+  })
+
+  return unsub
+}

@@ -1,46 +1,23 @@
-'use client'
-
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, Input } from '@/components/ui'
 import { Flame, Mail } from 'lucide-react'
-import type { User } from 'firebase/auth'
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  registerAuthListener,
-  signInWithGoogle,
-} from '@/auth/firebase'
-import { Link, useNavigate } from 'react-router'
+import { Link } from 'react-router'
+import { useAuth } from '@/components/auth/useAuth'
 
 export const AuthPage = () => {
-  const [user, setUser] = useState<User | null>(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSignUp, setIsSignUp] = useState(true)
-  const navigate = useNavigate()
 
-  useEffect(
-    () => {
-      const unsub = registerAuthListener((user) => {
-        setUser(user)
-        console.log({ user })
-        if (user) {
-          navigate('/calendar')
-        }
-      })
-
-      return unsub
-    },
-    [registerAuthListener] // eslint-disable-line react-hooks/exhaustive-deps
-  )
+  const { login, signUp, user } = useAuth()
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault()
     try {
       if (isSignUp) {
-        await createUserWithEmailAndPassword(email, password)
+        await signUp(email, password, 'emailAndPassword')
       } else {
-        await signInWithEmailAndPassword(email, password)
+        await login(email, password, 'emailAndPassword')
       }
     } catch (error) {
       console.error('Error with email authentication', error)
@@ -49,7 +26,7 @@ export const AuthPage = () => {
 
   return (
     <>
-      <div className="absolute top-5 right-5">
+      <div className="absolute top-5 right-5 min-h-screen">
         {
           <Button
             onClick={() => setIsSignUp(!isSignUp)}
@@ -136,7 +113,7 @@ export const AuthPage = () => {
                   <Button
                     variant="outline"
                     className="w-full bg-black border-gray-700 text-white"
-                    onClick={signInWithGoogle}
+                    onClick={() => login(email, password, 'google')}
                   >
                     <Mail className="mr-2 h-4 w-4" />
                     Google
