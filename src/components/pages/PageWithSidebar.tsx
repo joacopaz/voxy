@@ -38,9 +38,9 @@ const Page = ({ children }: PropsWithChildren) => {
   const { isOpen, toggleSidebar } = useSidebar()
 
   return (
-    <div className="flex h-screen w-full">
+    <div className="flex">
       <Sidebar
-        className={`flex-shrink-0 border-r transition-all duration-300 ${
+        className={`border-r transition-[width] ${
           isOpen ? 'w-[260px]' : 'w-16'
         }`}
       >
@@ -52,7 +52,7 @@ const Page = ({ children }: PropsWithChildren) => {
         <SidebarContent
           className={`flex flex-col gap-6 p-4 ${isOpen ? '' : 'items-center'}`}
         >
-          <div className="flex flex-col gap-6 w-full">
+          <div className="flex flex-col gap-7">
             {NAVIGATION.map((section) => (
               <div key={section.title} className="flex flex-col">
                 {isOpen && (
@@ -65,12 +65,12 @@ const Page = ({ children }: PropsWithChildren) => {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className={`flex items-center py-2 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-md transition-colors duration-200 ${
-                        isOpen ? 'text-left' : 'justify-center'
+                      className={`flex gap-1 items-center text-sm text-muted-foreground hover:text-foreground py-2 hover:bg-muted transition-colors duration-200 ${
+                        isOpen ? '' : 'justify-center'
                       }`}
                       onClick={item.onClick}
                     >
-                      <item.icon className={`h-4 w-4 flex-shrink-0 `} />
+                      <item.icon className={`h-4 w-4 `} />
                       {isOpen && <span className="truncate">{item.name}</span>}
                     </Link>
                   ))}
@@ -79,7 +79,7 @@ const Page = ({ children }: PropsWithChildren) => {
             ))}
           </div>
         </SidebarContent>
-        <div className="absolute bottom-4 left-0 right-0 flex justify-center">
+        <div className="absolute flex right-4 bottom-1/4">
           <Button
             variant="ghost"
             size="icon"
