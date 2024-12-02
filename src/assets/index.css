@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'GeistVF';
   src: url('assets/fonts/GeistVF.woff') format('woff');
@@ -10,27 +14,12 @@
 }
 
 :root {
-  font-family: 'GeistMonoVF', monospace;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -43,21 +32,8 @@ body {
 h1,
 h2,
 h3 {
-  font-family: 'GeistVF', sans-serif; /* Fallback to a generic sans-serif font */
+  font-family: 'GeistVF', sans-serif;
   line-height: 1.1;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 @layer base {
@@ -130,10 +106,6 @@ h3 {
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-}
-
-* {
-  box-sizing: border-box;
 }
 
 ::-webkit-scrollbar {

@@ -6,13 +6,18 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import prettier from 'eslint-plugin-prettier'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import tseslint from 'typescript-eslint'
+import importPlugin from 'eslint-plugin-import'
+
+// conflicting rule for SWC (Vite), does not infer modules
+delete importPlugin.flatConfigs.recommended.rules['import/no-unresolved']
 
 export default tseslint.config(
   { ignores: ['dist'] },
   {
     extends: [
       js.configs.recommended,
-      ...tseslint.configs.recommended,
+      tseslint.configs.recommended,
+      importPlugin.flatConfigs.recommended,
       eslintConfigPrettier,
     ],
     files: ['**/*.{ts,tsx}'],
@@ -33,6 +38,22 @@ export default tseslint.config(
         { allowConstantExport: true },
       ],
       'prefer-const': 'error',
+      'import/order': [
+        'error',
+        {
+          groups: [
+            ['builtin', 'external'], // External and built-in modules
+            ['internal', 'sibling', 'parent', 'index'], // Internal and relative imports
+          ],
+          alphabetize: {
+            order: 'asc',
+            caseInsensitive: true,
+          },
+          'newlines-between': 'always',
+        },
+      ],
+      'import/newline-after-import': ['error', { count: 1 }],
+      '@typescript-eslint/consistent-type-imports': 'error',
     },
   }
 )

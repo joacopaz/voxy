@@ -1,15 +1,19 @@
-import { useState } from 'react'
-import { Button, Input } from '@/components/ui'
 import { Flame, Mail } from 'lucide-react'
-import { Link } from 'react-router'
+import { useState } from 'react'
+import { Link, Navigate } from 'react-router'
+
 import { useAuth } from '@/components/auth/useAuth'
+import { Button, Input } from '@/components/ui'
 
 export const AuthPage = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSignUp, setIsSignUp] = useState(true)
-
   const { login, signUp, user } = useAuth()
+
+  if (user) {
+    return <Navigate to="/calendar" />
+  }
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault()

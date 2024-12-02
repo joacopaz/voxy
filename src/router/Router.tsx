@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router'
-import { LandingPage } from '@/pages/home/LandingPage'
+
 import { AuthPage } from '@/pages/auth/AuthPage'
+import { LandingPage } from '@/pages/home/LandingPage'
 
 export const Router = () => (
   <Routes>

@@ -1,10 +1,10 @@
-import { useMemo, useCallback } from 'react'
-import { Clock, Plus, Search, CalendarHeart } from 'lucide-react'
 import { format } from 'date-fns'
-import { Dispatch, SetStateAction } from 'react'
 import { es } from 'date-fns/locale'
-import { Button, Input } from '@/components/ui'
-import { useSidebar } from './sidebar/SidebarContext'
+import { Clock, Plus, Search, CalendarHeart } from 'lucide-react'
+import type { Dispatch, SetStateAction } from 'react'
+import { useMemo, useCallback } from 'react'
+
+import { Button, Input, useSidebar } from '@/components/ui'
 
 type Props = {
   setIsAddEventDialogOpen: Dispatch<SetStateAction<boolean>>
@@ -25,7 +25,7 @@ export const Calendar = ({
   const openAddEventDialog = useCallback(() => {
     setIsAddEventDialogOpen(true)
     setShowClientDetails(false)
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const weekStart = useMemo(() => getWeekStart(), [])
 

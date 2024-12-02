@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app'
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -9,7 +10,7 @@ import {
   signOut,
   type User,
 } from 'firebase/auth'
-import { initializeApp } from 'firebase/app'
+
 import type { IAuthContext } from '@/components/auth/AuthContext'
 
 const firebaseConfig = {

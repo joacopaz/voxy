@@ -1,7 +1,7 @@
 // FormComponents.tsx
-import * as React from 'react'
-import * as LabelPrimitive from '@radix-ui/react-label'
+import type * as LabelPrimitive from '@radix-ui/react-label'
 import { Slot } from '@radix-ui/react-slot'
+import * as React from 'react'
 import {
   Controller,
   type ControllerProps,
@@ -9,9 +9,10 @@ import {
   type FieldValues,
   FormProvider,
 } from 'react-hook-form'
+
+import { FormFieldContext , FormItemContext } from './FormContext'
 import { useFormField } from './useFormField'
-import { FormFieldContext } from './FormContext'
-import { FormItemContext } from './FormContext'
+
 import { Label } from '@/components/ui/Label'
 import { cn } from '@/utils/cn'
 

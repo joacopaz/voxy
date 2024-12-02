@@ -8,7 +8,7 @@ if [ $? -ne 0 ]; then
 fi
 
 # Run lint
-npm run lint
+npm run lint --fix
 if [ $? -ne 0 ]; then
     echo "Linting failed! Push aborted."
     exit 1

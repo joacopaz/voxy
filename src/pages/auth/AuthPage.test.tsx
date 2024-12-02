@@ -1,4 +1,5 @@
 import { render } from '@testing-library/react'
+
 import { AuthPage } from './AuthPage'
 
 test('Render Auth Page', () => {

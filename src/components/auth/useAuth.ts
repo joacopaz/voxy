@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+
 import { AuthContext, type IAuthContext } from './AuthContext'
 
 export const useAuth = (): IAuthContext => {

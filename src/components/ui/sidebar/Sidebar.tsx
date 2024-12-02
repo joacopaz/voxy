@@ -1,15 +1,22 @@
+import { Slot } from '@radix-ui/react-slot'
+import { type VariantProps, cva } from 'class-variance-authority'
+import { PanelLeft } from 'lucide-react'
 import {
+  type CSSProperties,
+  type ElementRef,
   type ComponentProps,
-  CSSProperties,
-  ElementRef,
   forwardRef,
   useCallback,
   useMemo,
   useState,
 } from 'react'
-import { Slot } from '@radix-ui/react-slot'
-import { VariantProps, cva } from 'class-variance-authority'
-import { PanelLeft } from 'lucide-react'
+
+import {
+  type ISidebarContext,
+  SidebarContext,
+  useSidebar,
+} from './SidebarContext'
+
 import {
   Input,
   Button,
@@ -24,11 +31,6 @@ import {
 } from '@/components/ui'
 import { cn } from '@/utils/cn'
 import { useIsMobile } from '@/utils/useMobile'
-import {
-  type ISidebarContext,
-  SidebarContext,
-  useSidebar,
-} from './SidebarContext'
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state'
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7

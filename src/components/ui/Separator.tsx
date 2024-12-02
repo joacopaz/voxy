@@ -1,11 +1,10 @@
-'use client'
-
+import * as SeparatorPrimitive from '@radix-ui/react-separator'
 import {
   type ElementRef,
   type ComponentPropsWithoutRef,
   forwardRef,
 } from 'react'
-import * as SeparatorPrimitive from '@radix-ui/react-separator'
+
 import { cn } from '@/utils/cn'
 
 const Separator = forwardRef<
