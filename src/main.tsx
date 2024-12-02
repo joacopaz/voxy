@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router'
 import { AuthProvider } from './components/auth/AuthProvider'
 import { Router } from './router/Router'
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById('voxy-root')!).render(
   <StrictMode>
     <BrowserRouter>
       <AuthProvider>

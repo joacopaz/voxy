@@ -6,7 +6,6 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
-  // signInWithRedirect, not working
   signOut,
   type User,
 } from 'firebase/auth'
@@ -28,7 +27,6 @@ const auth = getAuth(app)
 
 export const signInWithGoogle = async () => {
   const provider = new GoogleAuthProvider()
-  // signInWithRedirect(auth, provider)
   signInWithPopup(auth, provider)
 }
 
