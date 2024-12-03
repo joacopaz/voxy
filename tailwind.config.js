@@ -6,6 +6,7 @@ const config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './index.html',
   ],
   theme: {
     extend: {
@@ -90,6 +91,19 @@ const config = {
       },
     },
   },
-  plugins: [tailwindAnimate],
+  plugins: [
+    tailwindAnimate,
+    function ({ addComponents }) {
+      addComponents({
+        '.remove-scrollbar': {
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+        '.remove-scrollbar::-webkit-scrollbar': {
+          display: 'none',
+        },
+      })
+    },
+  ],
 }
 export default config

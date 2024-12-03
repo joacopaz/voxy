@@ -38,7 +38,7 @@ const Page = ({ children }: PropsWithChildren) => {
   const { isOpen, toggleSidebar } = useSidebar()
 
   return (
-    <div className="flex">
+    <div className="flex flex-1">
       <Sidebar
         className={`border-r transition-[width] ${
           isOpen ? 'w-[260px]' : 'w-16'

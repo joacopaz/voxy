@@ -65,12 +65,12 @@ export const SidebarProvider = forwardRef<
 
 export const Sidebar = forwardRef<HTMLDivElement, ComponentProps<'div'>>(
   ({ children, ...props }, ref) => (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative bg-sidebar">
       <div
         className={cn('z-10 transition-[width] ease-linear flex')}
         {...props}
       >
-        <div className="flex w-full flex-col bg-sidebar">{children}</div>
+        <div className="flex w-full flex-col">{children}</div>
       </div>
     </div>
   )
