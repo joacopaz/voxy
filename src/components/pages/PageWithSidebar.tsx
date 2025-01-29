@@ -112,9 +112,9 @@ const useNavigation = () => {
             href: '/calendar',
             icon: CalendarIcon,
           },
-          { name: 'Videollamada', href: '' /* TBD */, icon: Video },
-          { name: 'Enlace de Reserva', href: '' /* TBD */, icon: BookOpen },
-          { name: 'Enlace de Pago QR', href: '' /* TBD */, icon: CreditCard },
+          { name: 'Videollamada', href: '/videocall', icon: Video },
+          { name: 'Reservar', href: '/reserve', icon: BookOpen },
+          { name: 'Pagos', href: '/payments', icon: CreditCard },
         ],
       },
       {
@@ -122,7 +122,11 @@ const useNavigation = () => {
         items: [
           { name: 'Chatbot', href: '' /* TBD */, icon: MessageSquare },
           { name: 'Difusión', href: '' /* TBD */, icon: Zap },
-          { name: 'Recepción Virtual', href: '' /* TBD */, icon: Inbox },
+          {
+            name: 'Recepción Virtual',
+            href: '/front-desk',
+            icon: Inbox,
+          },
         ],
       },
       {
